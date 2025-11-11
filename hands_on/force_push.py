@@ -11,16 +11,6 @@ WORK_DIR = "things"
 
 
 def download(verbose: bool):
-    """
-    hp-force-push (T4L5)
-    - Fork https://github.com/git-mastery/samplerepo-things to user account as "samplerepo-things-force-push"
-    - Clone the fork locally as 'samplerepo-things'
-    """
-
-    gh_username = run_command(["gh", "api", "user", "-q", ".login"], verbose)
-    if not gh_username:
-        raise RuntimeError("Your Github CLI is not setup correctly")
-
     work_dir = Path(WORK_DIR)
     if work_dir.exists():
         shutil.rmtree(work_dir)
@@ -41,6 +31,3 @@ def download(verbose: bool):
         ],
         verbose,
     )
-
-    if not work_dir.is_dir():
-        raise RuntimeError("Fork/clone failed")
